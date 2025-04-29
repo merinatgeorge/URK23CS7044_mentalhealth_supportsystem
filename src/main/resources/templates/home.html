@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health Support System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .cta-buttons {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 10px;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .feature {
+            width: 30%;
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .feature h3 {
+            color: #4CAF50;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Health Support System</h1>
+        <p>Your companion on the journey to mental wellness</p>
+    </header>
+    
+    <div class="container">
+        <div class="cta-buttons">
+            <a th:href="@{/login}" class="btn">Login</a>
+            <a th:href="@{/register}" class="btn">Register</a>
+
+        </div>
+        
+        <h2>Welcome to our Mental Health Support System</h2>
+        <p>We provide resources, support, and tools to help you maintain and improve your mental wellbeing. Whether you're looking for information, need to talk to someone, or want to track your emotional health, we're here to help.</p>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Resources</h3>
+                <p>Access articles, videos, and tools on various mental health topics.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Support</h3>
+                <p>Connect with mental health professionals for guidance and assistance.</p>
+            </div>
+            
+            <div class="feature">
+                <h3>Mood Tracking</h3>
+                <p>Monitor your emotional wellbeing and identify patterns over time.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Mental Health Support System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

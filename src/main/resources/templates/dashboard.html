@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">       
+<head>
+    <meta charset="UTF-8">
+    <title>Mental Health Support Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 30%;
+            margin: 10px;
+            float: left;
+            min-height: 200px;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .card-content {
+            padding: 16px;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+        #welcome-message {
+            margin-bottom: 20px;
+        }
+        .btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mental Health Support System</h1>
+    </header>
+    <div class="navbar">
+        <a href="#" id="home-link">Home</a>
+        <a href="#" id="resources-link">Resources</a>
+        <a href="#" id="support-link">Get Support</a>
+        <a href="#" id="mood-link">Mood Tracker</a>
+        <a href="#" id="logout-link" style="float:right;">Logout</a>
+    </div>
+    
+    <div class="container">
+        <h2 id="welcome-message">Welcome, <span id="user-name"></span>!</h2>
+        
+        <div id="home-section">
+            <div class="clearfix">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Mental Health Resources</h3>
+                        <p>Access articles, videos, and tools to support your mental health journey.</p>
+                        <button class="btn" id="view-resources">View Resources</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Request Support</h3>
+                        <p>Reach out to mental health professionals for guidance and support.</p>
+                        <button class="btn" id="request-support">Get Support</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Track Your Mood</h3>
+                        <p>Monitor your emotional wellbeing and identify patterns over time.</p>
+                        <button class="btn" id="track-mood">Track Mood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Resources Section -->
+        <div id="resources-section" style="display:none;">
+            <h2>Mental Health Resources</h2>
+            <div class="clearfix">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Understanding Anxiety</h3>
+                        <p>Learn about anxiety symptoms, causes, and management techniques.</p>
+                        <button class="btn">Read More</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Depression: Signs & Support</h3>
+                        <p>Recognize depression symptoms and discover coping strategies.</p>
+                        <button class="btn">Read More</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Stress Management</h3>
+                        <p>Practical techniques to manage stress in your daily life.</p>
+                        <button class="btn">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Support Request Section -->
+        <div id="support-section" style="display:none;">
+            <h2>Request Support</h2>
+            <form id="supportForm">
+                <div style="margin-bottom: 15px;">
+                    <label for="issue">What are you struggling with?</label>
+                    <textarea id="issue" rows="4" style="width: 100%; padding: 8px;"></textarea>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label for="urgency">Urgency level:</label>
+                    <select id="urgency" style="width: 100%; padding: 8px;">
+                        <option value="low">Low - I'd like advice when available</option>
+                        <option value="medium">Medium - I need help soon</option>
+                        <option value="high">High - I need help urgently</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+            <p id="support-message"></p>
+        </div>
+        
+        <!-- Mood Tracker Section -->
+        <div id="mood-section" style="display:none;">
+            <h2>Mood Tracker</h2>
+            <div style="margin-bottom: 20px;">
+                <h3>How are you feeling today?</h3>
+                <div style="display: flex; justify-content: space-between; max-width: 500px;">
+                    <button class="mood-btn" data-mood="1">😢 Very Sad</button>
+                    <button class="mood-btn" data-mood="2">😔 Sad</button>
+                    <button class="mood-btn" data-mood="3">😐 Neutral</button>
+                    <button class="mood-btn" data-mood="4">🙂 Happy</button>
+                    <button class="mood-btn" data-mood="5">😁 Very Happy</button>
+                </div>
+            </div>
+            
+            <div>
+                <h3>Notes (optional):</h3>
+                <textarea id="mood-notes" rows="4" style="width: 100%; padding: 8px;"></textarea>
+                <button id="save-mood" class="btn" style="margin-top: 10px;">Save</button>
+            </div>
+            
+            <p id="mood-message"></p>
+        </div>
+    </div>
+    
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (!userName) {
+                window.location.href = "/login.html";
+                return;
+            }
+            
+            document.getElementById('user-name').innerText = userName;
+            
+            // Navigation
+            document.getElementById('home-link').addEventListener('click', showSection.bind(null, 'home'));
+            document.getElementById('resources-link').addEventListener('click', showSection.bind(null, 'resources'));
+            document.getElementById('support-link').addEventListener('click', showSection.bind(null, 'support'));
+            document.getElementById('mood-link').addEventListener('click', showSection.bind(null, 'mood'));
+            document.getElementById('logout-link').addEventListener('click', logout);
+            
+            document.getElementById('view-resources').addEventListener('click', showSection.bind(null, 'resources'));
+            document.getElementById('request-support').addEventListener('click', showSection.bind(null, 'support'));
+            document.getElementById('track-mood').addEventListener('click', showSection.bind(null, 'mood'));
+            
+            // Support form submission
+            document.getElementById('supportForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const issue = document.getElementById('issue').value;
+                const urgency = document.getElementById('urgency').value;
+                const userId = localStorage.getItem('userId');
+                
+                // In a real application, you'd send this data to the server
+                document.getElementById('support-message').innerText = "Your support request has been submitted. A mental health professional will contact you soon.";
+                document.getElementById('supportForm').reset();
+            });
+            
+            // Mood tracker
+            const moodButtons = document.querySelectorAll('.mood-btn');
+            let selectedMood = null;
+            
+            moodButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    moodButtons.forEach(btn => btn.style.border = 'none');
+                    this.style.border = '2px solid #4CAF50';
+                    selectedMood = this.getAttribute('data-mood');
+                });
+            });
+            
+            document.getElementById('save-mood').addEventListener('click', function() {
+                if (!selectedMood) {
+                    document.getElementById('mood-message').innerText = "Please select a mood.";
+                    return;
+                }
+                
+                const notes = document.getElementById('mood-notes').value;
+                const userId = localStorage.getItem('userId');
+                
+                // In a real application, you'd send this data to the server
+                document.getElementById('mood-message').innerText = "Your mood has been recorded for today. Thank you!";
+                document.getElementById('mood-notes').value = '';
+                moodButtons.forEach(btn => btn.style.border = 'none');
+                selectedMood = null;
+            });
+        });
+        
+        function showSection(section) {
+            // Hide all sections
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('resources-section').style.display = 'none';
+            document.getElementById('support-section').style.display = 'none';
+            document.getElementById('mood-section').style.display = 'none';
+            
+            // Show the selected section
+            if (section === 'home') {
+                document.getElementById('home-section').style.display = 'block';
+            } else if (section === 'resources') {
+                document.getElementById('resources-section').style.display = 'block';
+            } else if (section === 'support') {
+                document.getElementById('support-section').style.display = 'block';
+            } else if (section === 'mood') {
+                document.getElementById('mood-section').style.display = 'block';
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            window.location.href = "/login.html";
+        }
+    </script>
+</body>
+</html>
